@@ -1,0 +1,63 @@
+﻿@model TestMVC5.Models.Customers
+
+@{
+    ViewBag.Title = "AddCustomer";
+}
+
+<center>
+    <h2 style="color: green">You Can Add  New Customers</h2>
+
+     
+    @using (Html.BeginForm("SaveNewCustomer", "Customers", FormMethod.Post))
+    {
+    <div class="hs">
+        @*1) EN UTILISANT DisplayNameFor et TextBoxFor /   DisplayFor ne fonctionne pas ?????????????? : A Voir !!!*@
+        <h1> <span>@Html.DisplayNameFor(model => model.FirstName)</span> </h1>
+        @Html.TextBoxFor(model => model.FirstName, new { @style = "width:75%;", @class = "form-control", placeholder = "First Name" })<br />
+        @Html.ValidationMessageFor(model => model.FirstName)
+        <h1> <span>@Html.DisplayNameFor(model => model.LastName)</span> </h1>
+        @Html.TextBoxFor(model => model.LastName, new { @style = "width:75%;", @class = "form-control", placeholder = "Last Name" })<br />
+        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        @*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///Ce message d’erreur est créé automatiquement par le framework de validation à partir de ce que nous avons dans le modèle///
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+
+        @* //<h4>@Html.ValidationMessageFor(model => model.LastName)</h4>
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+        <h1> <span>@Html.DisplayNameFor(model => model.Age)</span> </h1>
+        @Html.TextBoxFor(model => model.Age, new { @style = "width:75%;", @class = "form-control", placeholder = "Age" })
+        <h1><span> @Html.DisplayNameFor(model => model.Invoice) </span></h1>
+        @Html.TextBoxFor(model => model.Invoice, new { @style = "width:75%;", @class = "form-control", placeholder = "Invoice" })
+        <h1><span>  @Html.DisplayNameFor(model => model.CustomerOpinion)</span> </h1>
+        @Html.TextBoxFor(model => model.CustomerOpinion, new { @style = "width:75%;", @class = "form-control", placeholder = "msg" })
+        <br />
+       <input type="submit" id="bouton17" name="name" value="Add" class="label-danger" />
+
+      @* //////////////////////////////////////////////////// TESTER UN JOLI BOUTON ///V/////////////////////////////////////
+        ///                                                                                                              ///
+
+
+
+
+
+        // 2)) //  UTILISER DIRECTEMENT UN EditorFor QUI VA GENERER UN FORMULAIRE QUI CONTIENT TOUTES LES PROPRIETES DU MODEL
+        // COMMENT SUPPRIMER LA PROPRIETE CustomerId DU FORULAIRE???????????????????????????????? utiliser id dans la méthode???? : A faire
+
+        //@Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control", placeholder = "Name" } })
+        //ici on change le CSS de notre imput (EditurFor)
+        //<input type="submit" name="name" value="Add Customer" />
+
+        // 3))  //UTILISER LES INPUTS SANS PASSER PAR LES DATANOTATIONS
+        // IL FAUT PRECISER LE NOM  DE LA PROPRIETE
+
+        <input type="text" name="FirstName" value="" class="" />
+        <input type = "text" name="LastName" value="" class="" />
+        <input type = "text" name="age" value="" class="" />
+        <input type = "text" name="Invoice" value="" class="" />
+        <input type="text" name="CustomerOpinion" value="" class="" />
+        <input type="submit" name="name" value="Add Customer" />*@
+    </div>
+    }
+
+</center>
+

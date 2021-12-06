@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TestMVC5.Models.Customers>
+
+@{
+    ViewBag.Title = "Liste";
+}
+
+<strong>THIS IS THE UPDATED CUSTOMER LIST</strong>
+<hr /><hr />
+@*
+    @if (Model != null)
+    {
+        foreach (var person in Model)
+        {
+            //@Html.DisplayNameFor(mperson => person.FirstName)    Ne fonctionne pas ??!!!!!!!!!!
+            <h3>Nom du Client : @Html.DisplayFor(mperson => person.FirstName)</h3>
+            <h5> @string.Format("Avis de la personne {0}:{1} ", person.CustomerId, @person.CustomerOpinion)</h5><hr /><hr />
+        }
+
+    }
+*@
+
+@* Afficher les résultat dans un tableau*@
+@if (Model != null)
+{
+    {
+
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col"> @Html.DisplayNameFor(m => m.FirstName)</th>
+                <th scope="col"> @Html.DisplayNameFor(m => m.LastName)</th>
+                <th scope="col"> @Html.DisplayNameFor(m => m.Age)</th>
+                <th scope="col"> @Html.DisplayNameFor(m => m.Invoice)</th>
+                <th scope="col"> @Html.DisplayNameFor(m => m.CustomerOpinion)</th>
+                <th scope="col"> Delete Customer</th>
+                <th scope="col"> Details Customer</th>
+
+
+            </tr>
+        </thead>
+        @foreach (var person in Model)
+        {
+            <tbody>
+                <tr>
+                    <th scope="row">@Html.DisplayFor(mperson => person.FirstName)</th>
+                    <td>@Html.DisplayFor(mperson => person.LastName)</td>
+                    <td>@Html.DisplayFor(mperson => person.Age)</td>
+                    <td>@Html.DisplayFor(mperson => person.Invoice)</td>
+                    <td>@Html.DisplayFor(mperson => person.CustomerOpinion)</td>
+                    @*  definir le paramertre id qui est dans la méthode,   on précise pas le controleur !! *@
+                    @*new { id = person.CustomerId } routeValues*@
+                    <td>@Html.ActionLink("Delete", "DeleteCustomer", new { id = person.CustomerId }, new { onclick = "return confirm('Are you sure you wish to delete this customer?');" })</td>
+                    @*For Customer Details*@
+                    <td>@Html.ActionLink("Details", "DetailsCustomer", new { Id = person.CustomerId })</td>
+                </tr>
+
+            </tbody>
+        }
+    </table>
+
+     }
+}

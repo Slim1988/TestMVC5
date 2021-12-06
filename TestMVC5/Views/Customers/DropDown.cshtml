@@ -1,0 +1,19 @@
+﻿@model IEnumerable<TestMVC5.Models.Customers>
+
+    @{
+        ViewBag.Title = "DropDown";
+    }
+
+    <h2>DropDown</h2>
+
+    <select size="1">
+       @if(Model != null)
+       {
+           foreach(var client in Model)
+           {
+               <option> @Html.DisplayFor(m => client.FirstName)</option>
+           }
+       }
+
+
+    </select>
